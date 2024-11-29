@@ -24,9 +24,15 @@ struct ArcView: View {
         let animation = Animation.easeInOut
         let arcShape = ArcShape(arc, configuration: configuration)
 
-        return ZStack() {
-            arcShape.fill(arc.backgroundColor).animation(animation)
-            arcShape.stroke(Color.primary, lineWidth: isNodeSelected() ? 4 : 0).clipShape(arcShape).animation(animation)
+        return ZStack {
+            arcShape
+                .fill(arc.backgroundColor)
+                .cornerRadius(2)
+                .animation(animation)
+            arcShape
+                .stroke(Color.primary, lineWidth: isNodeSelected() ? 4 : 0)
+                .clipShape(arcShape)
+                .animation(animation)
             if arc.width > 0 && (configuration.maximumRingsShownCount == nil || arc.level <= configuration.maximumRingsShownCount!)
                 && (configuration.maximumExpandedRingsShownCount == nil || arc.level <= configuration.maximumExpandedRingsShownCount!) {
                     ArcLabel(arc, configuration: configuration).animation(animation)
@@ -61,7 +67,7 @@ struct ArcLabel: View {
             }
             if !arc.isTextHidden {
                 Text(arc.node.name)
-                    .foregroundColor(configuration.textColor)
+                    .foregroundColor(arc.textColor)
                     .font(configuration.textFont)
             }
         }
@@ -140,10 +146,11 @@ private func lerp<T: BinaryFloatingPoint>(_ fromValue: T, _ toValue: T, by amoun
 #if DEBUG
 struct ArcView_Previews : PreviewProvider {
     static var previews: some View {
-        let node =  Node(name: "Walking",
-                         showName: false,
+        let node = Node(name: "Walking",
+                         showName: true,
                          value: 10.0,
-                         backgroundColor: .systemBlue)
+                         backgroundColor: .systemBlue
+        )
         let totalValue = 30.0
         let arc = Sunburst.Arc(node: node, level: 1, totalValue: totalValue)
         let configuration = SunburstConfiguration(nodes: [node],

@@ -18,6 +18,7 @@ class Sunburst: ObservableObject {
 
         var width: Double
         var backgroundColor: Color
+        var textColor: Color
         var isTextHidden: Bool
 
         fileprivate(set) var childArcs: [Arc]?
@@ -36,6 +37,7 @@ class Sunburst: ObservableObject {
             self.node = node
 
             backgroundColor = Color(node.computedBackgroundColor)
+            textColor = node.textColor
             width = totalValue > 0 ? (node.computedValue / totalValue) * 2.0 * .pi : 0
             isTextHidden = !node.showName
         }
@@ -44,6 +46,7 @@ class Sunburst: ObservableObject {
             self.node = node
 
             backgroundColor = Color(node.computedBackgroundColor)
+            textColor = node.textColor
             width = totalValue > 0 ? (node.computedValue / totalValue) * 2.0 * .pi : 0
             isTextHidden = !node.showName
         }

@@ -37,7 +37,6 @@ public class SunburstConfiguration: ObservableObject {
     @Published public var maximumExpandedRingsShownCount: UInt? = nil
 
     @Published public var textFont: Font = .system(size: 14)
-    @Published public var textColor: Color = .white
     
     // MARK: Interactions
 
@@ -86,6 +85,7 @@ public struct Node: Identifiable, Equatable {
     
     public var showName: Bool = true
     public var image: UIImage? = nil
+    public var textColor: Color = .white
     public var backgroundColor: UIColor? = nil
 
     // Internal values
@@ -93,11 +93,12 @@ public struct Node: Identifiable, Equatable {
     var computedBackgroundColor: UIColor = .systemGray
 
     public init(name: String, showName: Bool = true, image: UIImage? = nil,
-                value: Double? = nil, backgroundColor: UIColor? = nil, children: [Node] = []) {
+                value: Double? = nil, textColor: Color = .white, backgroundColor: UIColor? = nil, children: [Node] = []) {
         self.name = name
         self.showName = showName
         self.image = image
         self.value = value
+        self.textColor = textColor
         self.backgroundColor = backgroundColor
         self.children = children
     }
