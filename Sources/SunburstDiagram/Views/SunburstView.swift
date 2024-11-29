@@ -54,15 +54,15 @@ struct SunburstView_Previews : PreviewProvider {
     static var previews: some View {
         let configuration = SunburstConfiguration(nodes: [
             Node(name: "Walking",
-                 showName: false,
+                 showName: true,
                  value: 10.0,
                  backgroundColor: .systemBlue),
             Node(name: "Restaurant",
-                 showName: false,
+                 showName: true,
                  value: 30.0,
                  backgroundColor: .systemRed),
             Node(name: "Home",
-                 showName: false,
+                 showName: true,
                  value: 75.0,
                  backgroundColor: .systemTeal)
         ])

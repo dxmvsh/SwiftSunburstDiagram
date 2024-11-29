@@ -36,6 +36,9 @@ public class SunburstConfiguration: ObservableObject {
     /// Rings passed this will be shown collapsed (to show more rings with less data)
     @Published public var maximumExpandedRingsShownCount: UInt? = nil
 
+    @Published public var textFont: Font = .system(size: 14)
+    @Published public var textColor: Color = .white
+    
     // MARK: Interactions
 
     @Published public var allowsSelection: Bool = true
